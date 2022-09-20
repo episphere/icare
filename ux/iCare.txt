@@ -1,0 +1,235 @@
+{"name":"iCare_v0_0_1"}
+
+
+//Question:  Appropriate age range, currently 1->100
+[AGE!] What is your age |__|__|id=AGE_INP min=1 max=100|
+[99*] Dont Know
+
+[SEXATBIRTH!] Please specify your sex assigned at birth
+(1) Female 
+(0) Male -> END
+
+[RACEETH!] Which race/ethnicity group do you most closely associate with?
+
+(0) American Indian or Alaska Native -> END
+(1) Asian -> END
+(2) Black or African American -> END
+(3) Hispanic -> END
+(4) Native Hawaiian or Other Pacific Islander -> END
+(5) Non-Hispanic White
+(6) Other -> END
+
+[WEIGHT!] How much do you weigh without clothes or shoes on? |popup|?&#x20DD;|Are you pregnant?|If you are pregnant, how much did you weigh before your pregnancy?| 
+|__|__|id=WEIGHT_INP min=0 max=500| pounds
+[99*] Don't know
+
+[HEIGHT!] How tall are you with your shoes off? |popup|?&#x20DD;|Height in feet and inches|For example, if you are 5 feet 7 inches enter 5 in the feet box and 7 in the inches box|
+|__|__|id=HEIGHT_FT min=2 max=8| feet
+|__|__|id=HEIGHT_IN min=0 max=11| inches
+[99*] Don't know
+
+[MENARCHE!] How old were you when you had your first menstrual period?
+(0) Less than 11 years
+(1) 11 years
+(2) 12 years
+(3) 13 years
+(4) 14 years
+(5) 15 years
+(6) Older Than 15
+(99) Don't know
+
+[NOPERIOD!] Have your periods |popup|completely stopped|What do we mean by completely stopped|That is, have you now gone at least 6 months without having a period and you are not pregnant or using any form of hormonal contraception.|?
+(1) Yes
+(0) No -> NUMPREG
+(99) Don't know -> NUMPREG
+
+[LASTPERIODAGE!] How old were you when you had your last menstrual period?
+(0) Less than 40 years
+(1) 40-44 years
+(2) 45-49 years
+(3) 50-55 years
+(4) Older than 55 years
+
+[NUMPREG!] How many times have you been pregnant? |popup|?&#x20DD;|More information|Please include all live births, as well as pregnancies that ended as stillbirths, miscarriages, ectopic or tubal pregnancies, or termination. Twins, triplets, or higher multiples count as one pregnancy.|
+|__|__|min=0 max=25 id=NUMPREG_INP|
+[99*] Don't know
+
+[HADKIDS!, displayif=valueOrDefault("NUMPREG_INP",0)>0] Have you ever had any children?
+(1) Yes
+(0) No -> HORMONETREATMENT
+(99) Don't know -> HORMONETREATMENT
+
+[NUMKIDS!, displayif=valueOrDefault("NUMPREG_INP",0)>0] How many children have you had?
+(1) One birth
+(2) Two births
+(3) Three or more births
+
+[AGEATFIRSTCHILD!, displayif=valueOrDefault("NUMPREG_INP",0)>0] How old were you when you had your first child?
+(1) Less than 20 years
+(2) 20-24 years
+(3) 25-30 years
+(4) Older than 30 years
+(99) Don't know
+
+
+[HORMONETREATMENT!] Have you ever used menopausal hormone treatment prescribed by a doctor or other health professional?
+(1) Yes
+(0) No -> HORMONALCONTRACEPTIVE
+(99) Don't know -> HORMONALCONTRACEPTIVE
+
+[HORMONETREATMENTCURRENT!] Do you use currently?
+(1) Yes
+(0) No -> HORMONALCONTRACEPTIVE
+(99) Don't know -> HORMONALCONTRACEPTIVE
+
+[HORMONETREATMENTTYPE] What type of menopausal hormone treatment do you currently use?
+(1) Estrogen prescription hormone only.
+(2) Combined estrogen plus progestin prescription hormones.
+(99) Don't know
+
+
+[HORMONALCONTRACEPTIVE] Have you ever used any hormonal contraceptive medication or device? |popup|?&#x20DD;|More information|This includes combined oral contraceptive pills containing both estrogen and progesterone/progestin (commonly called the pill), progesterone-only or progestin-only contraceptive pills (commonly called the mini-pill), Norplant (inserted under the skin of your upper arm, lasts several years), Depo-provera (birth control shot given once every three months), Vaginal ring (such as Nuva Ring, inserted vaginally each month), Birth control patch (such as Ortho Evra, applied to the skin), Hormonal IUD (such as Mirena intrauterine device), or Other hormones prescribed by a health professional.|
+(1) Yes
+(0) No -> ALCOHOLUSE
+(99) Don't know -> ALCOHOLUSE
+
+[HORMONALCONTRACEPTIVECURRENT] Do you use currently?
+(1) Yes
+(0) No 
+(99) Don't know
+
+[ALCOHOLUSE] During your entire life, have you had at least 12 drinks of any kind of alcoholic beverage?
+(0) No  -> SMOKING
+(1) Yes, but I no longer drink alcohol. (former drinker)
+(2) Yes, I still drink alcohol. (current drinker)
+
+[ALCOHOLTYPE] Please select any of the following alcoholic beverages that you have had in the past 12 months.
+[1] Glass of wine -> WINEFREQ
+[2] Glass of Beer/Lager/Cider -> BLCFREQ
+[3] Bottle of Beer -> BEERFREQ
+[4] Alcoholic Pop Beverages (such as wine coolers, hard soda, spiked seltzer (sparkling water), Smirnoff Ice, malt liquor, or pre-mixed cocktails) -> POPFREQ
+[5] Shots of liquor -> SHOTFREQ
+[99*] Don't know
+< -> SMOKING >
+
+[WINEFREQ]
+Over the past 12 months, how often did you usually drink Wine? |popup|?&#x20DD;|More information|This includes any kind of wine or wine cooler|
+(0) Less than once a month
+(1) Once a month
+(2) 2-3 times a month
+(3) 1-2 times a week
+(4) 3-4 times a week
+(5) 5-6 times a week
+(6) Every day 
+(99) Don't know
+< -> WINESERVING >
+
+[WINESERVING] Over the past 12 months, on the days that you drank wine, how many servings did you drink per day? |popup|?&#x20DD;|More information|A serving of wine is 5 ounces|
+(0) 1 glass
+(1) 2 glasses
+(2) 3 glasses
+(3) 4 glasses
+(4) 5 glasses
+(5) 6 or more glasses
+(99) Don't know
+
+[BLCFREQ] Over the past 12 months, how often did you usually drink Glasses of Beer/Lager/Cider?
+(0) Less than once a month
+(1) Once a month
+(2) 2-3 times a month
+(3) 1-2 times a week
+(4) 3-4 times a week
+(5) 5-6 times a week
+(6) Every day 
+(99) Don't know
+< -> BLCSERVING >
+
+[BLCSERVING] Over the past 12 months, on the days that you drank Beer/Lager/Cider, how many servings did you drink per day? |popup|?&#x20DD;|More information|A serving of beer/lager/cider is a 12-ounce container|
+(0) 1 glass
+(1) 2 glasses
+(2) 3 glasses
+(3) 4 glasses
+(4) 5 glasses
+(5) 6 or more glasses
+(99) Don't know
+
+[BEERFREQ] Over the past 12 months, how often did you usually drink bottles of beer?
+
+(0) Less than once a month
+(1) Once a month
+(2) 2-3 times a month
+(3) 1-2 times a week
+(4) 3-4 times a week
+(5) 5-6 times a week
+(6) Every day 
+(99) Don't know
+
+< -> BEERSERVING >
+
+[BEERSERVING] Over the past 12 months, on the days that you drank beer, how many servings did you drink per day? |popup|?&#x20DD;|More information|A serving of beer is a 12-ounce container|
+(0) 1 bottle
+(1) 2 bottles
+(2) 3 bottles
+(3) 4 bottles
+(4) 5 bottles
+(5) 6 or more bottles
+(99) Don't know
+
+[POPFREQ] Over the past 12 months, how often did you usually drink alcoholic pop beverages?  |popup|?&#x20DD;|More information|These includes wine coolers, hard soda, spiked seltzer (sparkling water), Smirnoff Ice, malt liquor, or pre-mixed cocktails.|
+(0) Less than once a month
+(1) Once a month
+(2) 2-3 times a month
+(3) 1-2 times a week
+(4) 3-4 times a week
+(5) 5-6 times a week
+(6) Every day 
+(99) Don't know
+< -> POPSERVING >
+
+[POPSERVING] Over the past 12 months, on the days that you drank alcoholic pop beverages, how many servings did you drink per day? |popup|?&#x20DD;|More information|A serving of beer, hard cider, wine coolers, 'hard soda', spiked sparkling water, or malt liquor is a 12-ounce container. A serving of liquor or mixed drinks is one shot or 1.5 ounces of liquor.|
+(0) 1 beverage
+(1) 2 beverages
+(2) 3 beverages
+(3) 4 beverages
+(4) 5 beverages
+(5) 6 or more beverages
+(99) Don't know
+
+[SHOTFREQ] Over the past 12 months, how often did you usually take Shots of liquor?
+(0) Less than once a month
+(1) Once a month
+(2) 2-3 times a month
+(3) 1-2 times a week
+(4) 3-4 times a week
+(5) 5-6 times a week
+(6) Every day 
+(99) Don't know
+< -> SHOTSERVING >
+
+[SHOTSERVING] Over the past 12 months, on the days that you drank Liquor, how many servings did you drink per day? |popup|?&#x20DD;|More information|A serving of liquor or mixed drinks is one shot or 1.5 ounces of liquor.|
+(0) 1 shot
+(1) 2 shots
+(2) 3 shots
+(3) 4 shots
+(4) 5 shots
+(5) 6 or more shots
+(99) Don't know
+
+[SMOKING] Have you ever smoked?
+(1) Yes
+(0) No
+(99) Don't know
+
+[BENIGNBREASTHISTORY] Has a doctor or other health professional ever told you that you have or had fibrocystic breast or benign breast disease?
+(1) Yes
+(0) No
+(99) Don't know
+
+[FAMILYBREASTCANCERHISTORY] Has your biological mother, father, sister, or brother ever been diagnosed with breast cancer?
+(1) Yes
+(0) No
+(99) Don't know
+
+[END]   |displayif=valueEquals("SEXATBIRTH","0")| The current version of this tool is for <b>females</b> only. |
+|displayif=valueIsOneOf("RACEETH","0","1","2","3","4","6")| The current version of the model is developed for non-hispanic white populations. Future versions will be developed for other populations. |
+Click "Submit Survey" to Continue
